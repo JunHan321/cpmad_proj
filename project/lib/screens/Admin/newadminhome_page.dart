@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project/screens/Admin/admin_home_page.dart';
 import 'package:project/screens/Admin/showaccounts_page.dart';
+import 'package:project/screens/showreplyrecord_page.dart';
 import 'package:project/services/firebaseauth_service.dart';
 import 'package:project/screens/Admin/register.dart';
-import 'package:project/screens/addrecord_page.dart';
 import 'package:project/screens/showcontactrecord_page.dart';
 
 class NewAdminHomePage extends StatefulWidget {
@@ -32,6 +32,9 @@ class _NewAdminHomePageState extends State<NewAdminHomePage> {
       ..add(AccountsPage())
       ..add(RegisterPage())
       ..add(RecordsPage(
+        uid: 'Admin',
+      ))
+      ..add(ReplyRecordsPage(
         uid: 'Admin',
       ));
   }
@@ -82,11 +85,21 @@ class _NewAdminHomePageState extends State<NewAdminHomePage> {
             ),
             IconButton(
               tooltip: 'CONTACT RECORDS',
-              icon: Icon(Icons.list),
+              icon: Icon(Icons.message),
               color: Colors.white,
               onPressed: () {
                 setState(() {
                   _currentIndex = 3;
+                });
+              },
+            ),
+            IconButton(
+              tooltip: 'REPLY RECORDS',
+              icon: Icon(Icons.reply_sharp),
+              color: Colors.white,
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 4;
                 });
               },
             ),
