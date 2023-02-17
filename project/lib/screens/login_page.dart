@@ -153,17 +153,6 @@ class _LoginPageState extends State<LoginPage> {
                                   uid: reguser.uid,
                                   username: user.username,
                                 )));
-                      } else if (await FirestoreService()
-                              .checkDocsRole(reguser.uid) ==
-                          true) {
-                        print('Doctor');
-                        var user = await FirestoreService()
-                            .getUsersDetails(reguser.uid);
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => NewDocHomePage(
-                                  uid: reguser.uid,
-                                  username: user.username,
-                                )));
                       } else {
                         print('Not Admin');
                         if (await FirestoreService()
@@ -171,17 +160,34 @@ class _LoginPageState extends State<LoginPage> {
                             true) {
                           print('Not Deleted');
                           print(reguser.uid);
-                          var user = await FirestoreService()
-                              .getUsersDetails(reguser.uid);
-                          List<String> docList =
-                              await FirestoreService().getDocUN();
-                          Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
-                                  builder: (context) => NewHomePage(
-                                        uid: reguser.uid,
-                                        username: user.username,
-                                        docList: docList,
-                                      )));
+                          if (await FirestoreService()
+                                  .checkDocsRole(reguser.uid) ==
+                              true) {
+                            print('Doctor');
+                            var user = await FirestoreService()
+                                .getUsersDetails(reguser.uid);
+                            List<String> patList =
+                                await FirestoreService().getPatUN();
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                                    builder: (context) => NewDocHomePage(
+                                          uid: reguser.uid,
+                                          username: user.username,
+                                          patList: patList,
+                                        )));
+                          } else {
+                            var user = await FirestoreService()
+                                .getUsersDetails(reguser.uid);
+                            List<String> docList =
+                                await FirestoreService().getDocUN();
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                                    builder: (context) => NewHomePage(
+                                          uid: reguser.uid,
+                                          username: user.username,
+                                          docList: docList,
+                                        )));
+                          }
                         } else {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(

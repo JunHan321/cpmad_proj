@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/screens/addrecord_page.dart';
-import 'package:project/screens/showrecord_page.dart';
+import 'package:project/screens/showcontactrecord_page.dart';
 
 class AdminHomePage extends StatefulWidget {
   final uid;
@@ -28,24 +28,24 @@ class _AdminHomePageState extends State<AdminHomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              IconButton(
-                icon: Icon(Icons.add_box),
-                iconSize: 60,
-                tooltip: 'add record',
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => AddRecordPage()));
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.list),
-                iconSize: 60,
-                tooltip: 'view records',
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => RecordsPage()));
-                },
-              )
+              // IconButton(
+              //   icon: Icon(Icons.add_box),
+              //   iconSize: 60,
+              //   tooltip: 'add record',
+              //   onPressed: () {
+              //     Navigator.of(context).push(
+              //         MaterialPageRoute(builder: (context) => AddRecordPage()));
+              //   },
+              // ),
+              // IconButton(
+              //   icon: Icon(Icons.list),
+              //   iconSize: 60,
+              //   tooltip: 'view records',
+              //   onPressed: () {
+              //     Navigator.of(context).push(
+              //         MaterialPageRoute(builder: (context) => RecordsPage()));
+              //   },
+              // )
             ],
           ),
         ],

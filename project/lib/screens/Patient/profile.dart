@@ -33,13 +33,13 @@ class _ProfilePageState extends State<ProfilePage> {
               key: formKey,
               child: Column(
                 children: [
-                  TextFormField(
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(labelText: 'Username'),
-                    validator: (val) =>
-                        val.length == 0 ? "Enter Username" : null,
-                    onSaved: (val) => this.username = val,
-                  ),
+                  // TextFormField(
+                  //   keyboardType: TextInputType.text,
+                  //   decoration: InputDecoration(labelText: 'Username'),
+                  //   validator: (val) =>
+                  //       val.length == 0 ? "Enter Username" : null,
+                  //   onSaved: (val) => this.username = val,
+                  // ),
                   TextFormField(
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(labelText: 'Address'),
@@ -47,13 +47,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         val.length == 0 ? 'Enter Address' : null,
                     onSaved: (val) => this.address = val,
                   ),
-                  // TextFormField(
-                  //   keyboardType: TextInputType.phone,
-                  //   decoration: InputDecoration(labelText: 'Book Description'),
-                  //   validator: (val) =>
-                  //       val.length == 0 ? 'Enter Book Description' : null,
-                  //   onSaved: (val) => this.bookDescription = val,
-                  // ),
                   Container(
                     margin: const EdgeInsets.only(top: 10.0),
                     child: RaisedButton(
@@ -79,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
     User userinfo = await FirestoreService().getUsersDetails(widget.uid);
 
     FirestoreService().updatePatientData(
-        username: this.username, address: this.address, userinfo: userinfo);
+        username: userinfo.username, address: this.address, userinfo: userinfo);
 
     Fluttertoast.showToast(
         msg: "Data saved successfully", gravity: ToastGravity.TOP);
@@ -89,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
     Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => NewHomePage(
               uid: userinfo.id,
-              username: this.username,
+              username: userinfo.username,
               docList: docList,
             )));
   }

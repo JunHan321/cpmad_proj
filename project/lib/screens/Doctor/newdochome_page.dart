@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:project/screens/Doctor/docaddrecord_page.dart';
 import 'package:project/services/firebaseauth_service.dart';
 import 'package:project/screens/Patient/home_page.dart';
 import 'package:project/screens/Patient/profile.dart';
 import 'package:project/screens/addrecord_page.dart';
-import 'package:project/screens/showrecord_page.dart';
+import 'package:project/screens/showcontactrecord_page.dart';
 
 class NewDocHomePage extends StatefulWidget {
   final uid;
   final username;
-  final docList;
+  final patList;
   final index;
 
-  NewDocHomePage({Key key, this.uid, this.username, this.docList, this.index})
+  NewDocHomePage({Key key, this.uid, this.username, this.patList, this.index})
       : super(key: key);
 
   @override
@@ -28,8 +29,8 @@ class _NewDocHomePageState extends State<NewDocHomePage> {
 
     _listPages
       ..add(HomePage(username: widget.username))
-      ..add(AddRecordPage(
-        docList: widget.docList,
+      ..add(DocAddRecordPage(
+        patList: widget.patList,
         username: widget.username,
         uid: widget.uid,
       ))
@@ -48,13 +49,14 @@ class _NewDocHomePageState extends State<NewDocHomePage> {
             : _currentIndex = widget.index],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.blueAccent,
+        color: Colors.teal,
         shape: CircularNotchedRectangle(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             IconButton(
               icon: Icon(Icons.home),
+              tooltip: 'HOME',
               color: Colors.white,
               onPressed: () {
                 setState(() {
@@ -64,6 +66,7 @@ class _NewDocHomePageState extends State<NewDocHomePage> {
             ),
             IconButton(
               icon: Icon(Icons.add_box),
+              tooltip: 'CONTACT FORM',
               color: Colors.white,
               onPressed: () {
                 setState(() {
@@ -73,6 +76,7 @@ class _NewDocHomePageState extends State<NewDocHomePage> {
             ),
             IconButton(
               icon: Icon(Icons.list),
+              tooltip: 'CONTACT LIST',
               color: Colors.white,
               onPressed: () {
                 setState(() {
@@ -80,16 +84,17 @@ class _NewDocHomePageState extends State<NewDocHomePage> {
                 });
               },
             ),
+            // IconButton(
+            //   icon: Icon(Icons.person),
+            //   color: Colors.white,
+            //   onPressed: () {
+            //     setState(() {
+            //       _currentIndex = 3;
+            //     });
+            //   },
+            // ),
             IconButton(
-              icon: Icon(Icons.person),
-              color: Colors.white,
-              onPressed: () {
-                setState(() {
-                  _currentIndex = 3;
-                });
-              },
-            ),
-            IconButton(
+              tooltip: 'EXIT',
               onPressed: () async {
                 await FirebaseAuthService().signOut();
                 Navigator.of(context).pushNamed('/login');

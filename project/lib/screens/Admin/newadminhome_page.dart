@@ -4,7 +4,7 @@ import 'package:project/screens/Admin/showaccounts_page.dart';
 import 'package:project/services/firebaseauth_service.dart';
 import 'package:project/screens/Admin/register.dart';
 import 'package:project/screens/addrecord_page.dart';
-import 'package:project/screens/showrecord_page.dart';
+import 'package:project/screens/showcontactrecord_page.dart';
 
 class NewAdminHomePage extends StatefulWidget {
   final uid;
@@ -46,12 +46,13 @@ class _NewAdminHomePageState extends State<NewAdminHomePage> {
             : _currentIndex = widget.index],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.blueAccent,
+        color: Colors.teal,
         shape: CircularNotchedRectangle(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             IconButton(
+              tooltip: 'HOME',
               icon: Icon(Icons.home),
               color: Colors.white,
               onPressed: () {
@@ -61,6 +62,7 @@ class _NewAdminHomePageState extends State<NewAdminHomePage> {
               },
             ),
             IconButton(
+              tooltip: 'ACCOUNTS',
               icon: Icon(Icons.people_alt),
               color: Colors.white,
               onPressed: () {
@@ -70,6 +72,7 @@ class _NewAdminHomePageState extends State<NewAdminHomePage> {
               },
             ),
             IconButton(
+              tooltip: 'REGISTER',
               icon: Icon(Icons.person_add),
               color: Colors.white,
               onPressed: () {
@@ -88,6 +91,7 @@ class _NewAdminHomePageState extends State<NewAdminHomePage> {
             //   },
             // ),
             IconButton(
+              tooltip: 'CONTACT RECORDS',
               icon: Icon(Icons.list),
               color: Colors.white,
               onPressed: () {
@@ -97,6 +101,7 @@ class _NewAdminHomePageState extends State<NewAdminHomePage> {
               },
             ),
             IconButton(
+              tooltip: 'EXIT',
               onPressed: () async {
                 await FirebaseAuthService().signOut();
                 Navigator.of(context).pushNamed('/login');

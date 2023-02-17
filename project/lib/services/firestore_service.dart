@@ -1,13 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:project/model/contact.dart';
+import 'package:project/model/reply.dart';
 import 'package:project/model/user.dart';
 
 class FirestoreService {
-  final CollectionReference contactollection =
+  final CollectionReference contactcollection =
       FirebaseFirestore.instance.collection('contacts');
 
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
+
+  final CollectionReference replyCollection =
+      FirebaseFirestore.instance.collection('replies');
 
   Future<void> addContactData(
       {String username,
@@ -16,10 +20,10 @@ class FirestoreService {
       String docUsername,
       String docId,
       String description}) async {
-    var docRef = FirestoreService().contactollection.doc();
+    var docRef = FirestoreService().contactcollection.doc();
     print('add docRef: ' + docRef.id);
 
-    await contactollection.doc(docRef.id).set({
+    await contactcollection.doc(docRef.id).set({
       'uid': docRef.id,
       'id': id,
       'topic': topic,
@@ -30,9 +34,30 @@ class FirestoreService {
     });
   }
 
+  Future<void> addReplyData(
+      {String username,
+      String id,
+      String topic,
+      String patUsername,
+      String docId,
+      String description}) async {
+    var docRef = FirestoreService().replyCollection.doc();
+    print('add docRef: ' + docRef.id);
+
+    await replyCollection.doc(docRef.id).set({
+      'uid': docRef.id,
+      'id': id,
+      'topic': topic,
+      'username': username,
+      'patUsername': patUsername,
+      'docId': docId,
+      'description': description,
+    });
+  }
+
   Future<List<Contact>> readContactData(uid) async {
     List<Contact> contactList = [];
-    QuerySnapshot snapshot = await contactollection.get();
+    QuerySnapshot snapshot = await contactcollection.get();
 
     snapshot.docs.forEach((document) {
       Contact contact = Contact.fromMap(document.data());
@@ -40,25 +65,46 @@ class FirestoreService {
         contactList.add(contact);
       } else if (uid == 'Admin') {
         contactList.add(contact);
+      } else if (contact.docId == uid) {
+        contactList.add(contact);
       }
     });
 
-    print('Booklist: $contactList');
+    print('Contactlist: $contactList');
     return contactList;
   }
 
+  Future<List<Reply>> readReplyData(uid) async {
+    List<Reply> replyList = [];
+    QuerySnapshot snapshot = await replyCollection.get();
+
+    snapshot.docs.forEach((document) {
+      Reply reply = Reply.fromMap(document.data());
+      if (reply.uid == uid || reply.id == uid) {
+        replyList.add(reply);
+      } else if (uid == 'Admin') {
+        replyList.add(reply);
+      } else if (reply.docId == uid) {
+        replyList.add(reply);
+      }
+    });
+
+    print('Replylist: $replyList');
+    return replyList;
+  }
+
   Future<void> deleteContactData(String docId) async {
-    contactollection.doc(docId).delete();
+    contactcollection.doc(docId).delete();
 
     print('deleting uid: ' + docId);
   }
 
   Future<void> updateContactData(
       String username, String docUsername, String description) async {
-    var docRef = FirestoreService().contactollection.doc();
+    var docRef = FirestoreService().contactcollection.doc();
     print('update docRef: ' + docRef.id);
 
-    await contactollection.doc(docRef.id).update({
+    await contactcollection.doc(docRef.id).update({
       'uid': docRef.id,
       'username': username,
       'docUsername': docUsername,
@@ -67,7 +113,7 @@ class FirestoreService {
   }
 
   Future<void> deleteContactDoc() async {
-    await contactollection.get().then((snapshot) {
+    await contactcollection.get().then((snapshot) {
       for (DocumentSnapshot ds in snapshot.docs) {
         ds.reference.delete();
       }
@@ -120,6 +166,21 @@ class FirestoreService {
     return docList;
   }
 
+  Future<List<String>> getPatUN() async {
+    List<String> patList = ['None Selected'];
+    QuerySnapshot snapshot = await userCollection.get();
+
+    snapshot.docs.forEach((document) {
+      User user = User.fromMap(document.data());
+      if ((user.role == 'Patient') && user.deleted != "1") {
+        patList.add(user.username);
+      }
+    });
+
+    print('PatList: $patList');
+    return patList;
+  }
+
   Future<User> getUsersDetails(var uid) async {
     User userinfo;
     QuerySnapshot snapshot = await userCollection.get();
@@ -134,6 +195,19 @@ class FirestoreService {
   }
 
   Future<User> getDocsDetailsByUN(var username) async {
+    User userinfo;
+    QuerySnapshot snapshot = await userCollection.get();
+
+    snapshot.docs.forEach((document) {
+      User user = User.fromMap(document.data());
+      if (user.username == username) {
+        userinfo = user;
+      }
+    });
+    return userinfo;
+  }
+
+  Future<User> getPatsDetailsByUN(var username) async {
     User userinfo;
     QuerySnapshot snapshot = await userCollection.get();
 

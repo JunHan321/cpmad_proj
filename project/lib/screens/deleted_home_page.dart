@@ -26,7 +26,7 @@ class _DeletedHomePageState extends State<DeletedHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.logout),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.teal,
         tooltip: 'EXIT',
         onPressed: () async {
           await FirebaseAuthService().signOut();

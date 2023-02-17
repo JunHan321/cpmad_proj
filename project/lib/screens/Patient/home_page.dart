@@ -26,28 +26,28 @@ class _HomePageState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              IconButton(
-                icon: Icon(Icons.add_box),
-                iconSize: 60,
-                tooltip: 'add record',
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => NewHomePage(
-                            index: 1,
-                          )));
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.list),
-                iconSize: 60,
-                tooltip: 'view records',
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => NewHomePage(
-                            index: 2,
-                          )));
-                },
-              )
+              // IconButton(
+              //   icon: Icon(Icons.add_box),
+              //   iconSize: 60,
+              //   tooltip: 'add record',
+              //   onPressed: () {
+              //     Navigator.of(context).push(MaterialPageRoute(
+              //         builder: (context) => NewHomePage(
+              //               index: 1,
+              //             )));
+              //   },
+              // ),
+              // IconButton(
+              //   icon: Icon(Icons.list),
+              //   iconSize: 60,
+              //   tooltip: 'view records',
+              //   onPressed: () {
+              //     Navigator.of(context).push(MaterialPageRoute(
+              //         builder: (context) => NewHomePage(
+              //               index: 2,
+              //             )));
+              //   },
+              // )
             ],
           ),
         ],

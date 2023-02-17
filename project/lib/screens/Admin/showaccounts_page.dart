@@ -71,7 +71,7 @@ class _AccountsPageState extends State<AccountsPage> {
                             ],
                           ),
                           IconButton(
-                            color: Colors.blue,
+                            color: Colors.teal,
                             icon: Icon(Icons.edit),
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
@@ -80,7 +80,7 @@ class _AccountsPageState extends State<AccountsPage> {
                             },
                           ),
                           IconButton(
-                            color: Colors.blue,
+                            color: Colors.teal,
                             icon: Icon(Icons.delete),
                             onPressed: () async {
                               setState(() {
@@ -90,7 +90,9 @@ class _AccountsPageState extends State<AccountsPage> {
                                     snapshot.data[index].email,
                                     snapshot.data[index].role);
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => NewAdminHomePage(index: 1,)));
+                                    builder: (context) => NewAdminHomePage(
+                                          index: 1,
+                                        )));
                               });
                               Fluttertoast.showToast(
                                   msg: "Data deleted successfully",

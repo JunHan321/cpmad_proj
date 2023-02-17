@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:project/model/reply.dart';
+import 'package:project/screens/showreplyrecord_page.dart';
 import 'package:project/services/firebaseauth_service.dart';
 import 'package:project/screens/Patient/home_page.dart';
 import 'package:project/screens/Patient/profile.dart';
 import 'package:project/screens/addrecord_page.dart';
-import 'package:project/screens/showrecord_page.dart';
+import 'package:project/screens/showcontactrecord_page.dart';
 
 class NewHomePage extends StatefulWidget {
   final uid;
@@ -36,6 +38,9 @@ class _NewHomePageState extends State<NewHomePage> {
       ..add(RecordsPage(
         uid: widget.uid,
       ))
+      ..add(ReplyRecordsPage(
+        uid: widget.uid,
+      ))
       ..add(ProfilePage(uid: widget.uid));
   }
 
@@ -48,12 +53,13 @@ class _NewHomePageState extends State<NewHomePage> {
             : _currentIndex = widget.index],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.blueAccent,
+        color: Colors.teal,
         shape: CircularNotchedRectangle(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             IconButton(
+              tooltip: 'HOME',
               icon: Icon(Icons.home),
               color: Colors.white,
               onPressed: () {
@@ -63,6 +69,7 @@ class _NewHomePageState extends State<NewHomePage> {
               },
             ),
             IconButton(
+              tooltip: 'CONTACT FORM',
               icon: Icon(Icons.add_box),
               color: Colors.white,
               onPressed: () {
@@ -72,7 +79,8 @@ class _NewHomePageState extends State<NewHomePage> {
               },
             ),
             IconButton(
-              icon: Icon(Icons.list),
+              tooltip: 'CONTACT LIST',
+              icon: Icon(Icons.message),
               color: Colors.white,
               onPressed: () {
                 setState(() {
@@ -81,7 +89,8 @@ class _NewHomePageState extends State<NewHomePage> {
               },
             ),
             IconButton(
-              icon: Icon(Icons.person),
+              tooltip: 'REPLY LIST',
+              icon: Icon(Icons.reply),
               color: Colors.white,
               onPressed: () {
                 setState(() {
@@ -90,6 +99,17 @@ class _NewHomePageState extends State<NewHomePage> {
               },
             ),
             IconButton(
+              tooltip: 'PROFILE',
+              icon: Icon(Icons.person),
+              color: Colors.white,
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 4;
+                });
+              },
+            ),
+            IconButton(
+              tooltip: 'EXIT',
               onPressed: () async {
                 await FirebaseAuthService().signOut();
                 Navigator.of(context).pushNamed('/login');

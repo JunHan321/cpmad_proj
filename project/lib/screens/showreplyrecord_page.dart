@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:project/model/contact.dart';
+import 'package:project/model/reply.dart';
 import 'package:project/services/firestore_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class RecordsPage extends StatefulWidget {
+class ReplyRecordsPage extends StatefulWidget {
   final uid;
-  RecordsPage({Key key, this.uid}) : super(key: key);
+  ReplyRecordsPage({Key key, this.uid}) : super(key: key);
   @override
-  State<RecordsPage> createState() => _RecordsPageState();
+  State<ReplyRecordsPage> createState() => _ReplyRecordsPageState();
 }
 
-class _RecordsPageState extends State<RecordsPage> {
+class _ReplyRecordsPageState extends State<ReplyRecordsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contact Records'),
+        title: Text('Replies Records'),
       ),
-      body: FutureBuilder<List<Contact>>(
-        future: FirestoreService().readContactData(widget.uid),
+      body: FutureBuilder<List<Reply>>(
+        future: FirestoreService().readReplyData(widget.uid),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
@@ -29,9 +30,19 @@ class _RecordsPageState extends State<RecordsPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Doc: ${snapshot.data[index].docUsername}",
-                        style: TextStyle(color: Colors.blue, fontSize: 16.0),
+                      Column(
+                        children: [
+                          Text(
+                            "From: ${snapshot.data[index].username}",
+                            style:
+                                TextStyle(color: Colors.teal, fontSize: 16.0),
+                          ),
+                          Text(
+                            "To: ${snapshot.data[index].patUsername}",
+                            style:
+                                TextStyle(color: Colors.teal, fontSize: 16.0),
+                          ),
+                        ],
                       ),
                       Column(
                         children: [
@@ -48,7 +59,7 @@ class _RecordsPageState extends State<RecordsPage> {
                         ],
                       ),
                       IconButton(
-                        color: Colors.blue,
+                        color: Colors.teal,
                         icon: Icon(Icons.delete),
                         onPressed: () async {
                           setState(() {
