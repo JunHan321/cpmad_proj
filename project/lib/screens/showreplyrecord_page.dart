@@ -64,7 +64,7 @@ class _ReplyRecordsPageState extends State<ReplyRecordsPage> {
                         onPressed: () async {
                           setState(() {
                             FirestoreService()
-                                .deleteContactData(snapshot.data[index].uid);
+                                .deleteReplyData(snapshot.data[index].uid);
                           });
                           Fluttertoast.showToast(
                               msg: "Data deleted successfully",

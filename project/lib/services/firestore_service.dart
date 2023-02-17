@@ -99,6 +99,12 @@ class FirestoreService {
     print('deleting uid: ' + docId);
   }
 
+  Future<void> deleteReplyData(String docId) async {
+    replyCollection.doc(docId).delete();
+
+    print('deleting uid: ' + docId);
+  }
+
   Future<void> updateContactData(
       String username, String docUsername, String description) async {
     var docRef = FirestoreService().contactcollection.doc();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/screens/Doctor/docaddrecord_page.dart';
+import 'package:project/screens/showreplyrecord_page.dart';
 import 'package:project/services/firebaseauth_service.dart';
 import 'package:project/screens/Patient/home_page.dart';
 import 'package:project/screens/Patient/profile.dart';
@@ -35,6 +36,9 @@ class _NewDocHomePageState extends State<NewDocHomePage> {
         uid: widget.uid,
       ))
       ..add(RecordsPage(
+        uid: widget.uid,
+      ))
+      ..add(ReplyRecordsPage(
         uid: widget.uid,
       ))
       ..add(ProfilePage(uid: widget.uid));
@@ -75,7 +79,7 @@ class _NewDocHomePageState extends State<NewDocHomePage> {
               },
             ),
             IconButton(
-              icon: Icon(Icons.list),
+              icon: Icon(Icons.message),
               tooltip: 'CONTACT LIST',
               color: Colors.white,
               onPressed: () {
@@ -84,15 +88,16 @@ class _NewDocHomePageState extends State<NewDocHomePage> {
                 });
               },
             ),
-            // IconButton(
-            //   icon: Icon(Icons.person),
-            //   color: Colors.white,
-            //   onPressed: () {
-            //     setState(() {
-            //       _currentIndex = 3;
-            //     });
-            //   },
-            // ),
+            IconButton(
+              icon: Icon(Icons.reply),
+              tooltip: 'REPLY LIST',
+              color: Colors.white,
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 3;
+                });
+              },
+            ),
             IconButton(
               tooltip: 'EXIT',
               onPressed: () async {
