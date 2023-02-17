@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () async {
                   if (register) {
                     var newuser = await FirebaseAuthService().signUp(
@@ -201,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 child: register ? Text("Register") : Text("Login"),
               ),
-              OutlineButton(
+              OutlinedButton(
                 onPressed: () {
                   setState(() {
                     register = !register;

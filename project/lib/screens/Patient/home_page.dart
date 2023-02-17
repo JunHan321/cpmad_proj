@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project/screens/Patient/newhome_page.dart';
 
 class HomePage extends StatefulWidget {
   final username;
@@ -12,6 +11,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text('Home'),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project/model/user.dart';
-import 'package:project/screens/Doctor/newdochome_page.dart';
 import 'package:project/services/firestore_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -36,12 +35,6 @@ class _DocAddRecordPageState extends State<DocAddRecordPage> {
             key: formKey,
             child: Column(
               children: [
-                // TextFormField(
-                //   keyboardType: TextInputType.text,
-                //   decoration: InputDecoration(labelText: 'Username'),
-                //   validator: (val) => val.length == 0 ? "Enter Username" : null,
-                //   onSaved: (val) => this.username = val,
-                // ),
                 Row(
                   children: [
                     Text(
@@ -49,21 +42,14 @@ class _DocAddRecordPageState extends State<DocAddRecordPage> {
                       style: TextStyle(fontSize: 18),
                     ),
                     DropdownButton(
-                      // Initial Value
                       value: dropdownvalue,
-
-                      // Down Arrow Icon
                       icon: const Icon(Icons.keyboard_arrow_down),
-
-                      // Array list of items
                       items: widget.patList.map((String items) {
                         return DropdownMenuItem(
                           value: items,
                           child: Text(items),
                         );
                       }).toList(),
-                      // After selecting the desired option,it will
-                      // change button value to selected value
                       onChanged: (String newValue) {
                         setState(() {
                           dropdownvalue = newValue;
@@ -88,7 +74,7 @@ class _DocAddRecordPageState extends State<DocAddRecordPage> {
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 10.0),
-                  child: RaisedButton(
+                  child: ElevatedButton(
                     onPressed: this.patUsername != null ? _submit : null,
                     child: Text('Submit'),
                   ),

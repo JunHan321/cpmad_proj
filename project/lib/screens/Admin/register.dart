@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:project/screens/Admin/newadminhome_page.dart';
 import 'package:project/services/firebaseauth_service.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -80,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ],
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () async {
                   var newuser = await FirebaseAuthService().signUp(
                     username: usernameController.text.trim(),

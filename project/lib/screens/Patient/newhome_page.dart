@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project/model/reply.dart';
 import 'package:project/screens/showreplyrecord_page.dart';
 import 'package:project/services/firebaseauth_service.dart';
 import 'package:project/screens/Patient/home_page.dart';
@@ -22,7 +21,7 @@ class NewHomePage extends StatefulWidget {
 
 class _NewHomePageState extends State<NewHomePage> {
   int _currentIndex = 0;
-  List<Widget> _listPages = List();
+  List<Widget> _listPages = [];
 
   @override
   void initState() {
@@ -120,16 +119,6 @@ class _NewHomePageState extends State<NewHomePage> {
           ],
         ),
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.logout),
-      //   backgroundColor: Colors.blueAccent,
-      //   tooltip: 'Sign Out',
-      //   onPressed: () async {
-      //     await FirebaseAuthService().signOut();
-      //     Navigator.of(context).pushNamed('/login');
-      //   },
-      // ),
     );
   }
 }

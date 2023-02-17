@@ -33,13 +33,6 @@ class _ProfilePageState extends State<ProfilePage> {
               key: formKey,
               child: Column(
                 children: [
-                  // TextFormField(
-                  //   keyboardType: TextInputType.text,
-                  //   decoration: InputDecoration(labelText: 'Username'),
-                  //   validator: (val) =>
-                  //       val.length == 0 ? "Enter Username" : null,
-                  //   onSaved: (val) => this.username = val,
-                  // ),
                   TextFormField(
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(labelText: 'Address'),

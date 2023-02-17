@@ -4,7 +4,6 @@ import 'package:project/screens/showreplyrecord_page.dart';
 import 'package:project/services/firebaseauth_service.dart';
 import 'package:project/screens/Patient/home_page.dart';
 import 'package:project/screens/Patient/profile.dart';
-import 'package:project/screens/addrecord_page.dart';
 import 'package:project/screens/showcontactrecord_page.dart';
 
 class NewDocHomePage extends StatefulWidget {
@@ -110,16 +109,6 @@ class _NewDocHomePageState extends State<NewDocHomePage> {
           ],
         ),
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.logout),
-      //   backgroundColor: Colors.blueAccent,
-      //   tooltip: 'Sign Out',
-      //   onPressed: () async {
-      //     await FirebaseAuthService().signOut();
-      //     Navigator.of(context).pushNamed('/login');
-      //   },
-      // ),
     );
   }
 }

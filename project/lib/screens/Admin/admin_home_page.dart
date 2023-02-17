@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project/screens/addrecord_page.dart';
-import 'package:project/screens/showcontactrecord_page.dart';
 
 class AdminHomePage extends StatefulWidget {
   final uid;
@@ -15,6 +13,10 @@ class _AdminHomePageState extends State<AdminHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text('Home'),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

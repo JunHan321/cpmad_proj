@@ -47,16 +47,6 @@ class _EditPageState extends State<EditPage> {
                         onSaved: (val) => this.username = val,
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.all(12.0),
-                    //   child: TextFormField(
-                    //     keyboardType: TextInputType.text,
-                    //     decoration: InputDecoration(labelText: 'Address'),
-                    //     validator: (val) =>
-                    //         val.length == 0 ? "Enter Address" : null,
-                    //     onSaved: (val) => this.address = val,
-                    //   ),
-                    // ),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: TextFormField(
@@ -80,7 +70,7 @@ class _EditPageState extends State<EditPage> {
                   ],
                 ),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: _submit,
                 child: Text("Save"),
               ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project/model/contact.dart';
 import 'package:project/model/reply.dart';
 import 'package:project/services/firestore_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';

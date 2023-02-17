@@ -31,7 +31,6 @@ class _NewAdminHomePageState extends State<NewAdminHomePage> {
       ))
       ..add(AccountsPage())
       ..add(RegisterPage())
-      ..add(AddRecordPage())
       ..add(RecordsPage(
         uid: 'Admin',
       ));
@@ -81,22 +80,13 @@ class _NewAdminHomePageState extends State<NewAdminHomePage> {
                 });
               },
             ),
-            // IconButton(
-            //   icon: Icon(Icons.add_box),
-            //   color: Colors.white,
-            //   onPressed: () {
-            //     setState(() {
-            //       _currentIndex = 3;
-            //     });
-            //   },
-            // ),
             IconButton(
               tooltip: 'CONTACT RECORDS',
               icon: Icon(Icons.list),
               color: Colors.white,
               onPressed: () {
                 setState(() {
-                  _currentIndex = 4;
+                  _currentIndex = 3;
                 });
               },
             ),
